@@ -1,0 +1,110 @@
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Tema</h1>
+
+<button (click)="cleanForm()" type="button" class="btn btn-sm btn-success btn-icon-split mb-4" data-toggle="modal" data-target="#modal">
+  <span class="icon text-white-50">
+      <i class="fas fa-plus"></i>
+  </span>
+  <span class="text">
+      Agregar tema
+  </span>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalLabel">Tema</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="form">
+          <div class="form-group">
+            <label for="titulo">Titulo</label>
+            <input formControlName="titulo" type="text" id="titulo" name="titulo" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="year">Año</label>
+            <input formControlName="year" type="text" id="year" name="year" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="idioma_id">Idioma</label>
+            <select formControlName="idioma_id" class="custom-select" id="idioma_id">
+              <option *ngFor="let idioma of idiomas" [value]="idioma.id">{{idioma.nombre}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="artista_id">Artista</label>
+            <select formControlName="artista_id" class="custom-select" id="artista_id">
+              <option *ngFor="let artista of artistas" [value]="artista.id">{{artista.nombre}}{{artista.apellido_paterno}} </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="genero_id">Genero</label>
+            <select formControlName="genero_id" class="custom-select" id="genero_id">
+              <option *ngFor="let genero of generos" [value]="genero.id">{{genero.nombre}}</option>
+            </select>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <input
+          data-dismiss="modal"
+          type="button"
+          value="Guardar"
+          class="btn btn-success"
+          *ngIf="!isEdit; else editInput"
+          (click)="create()">
+        <ng-template #editInput>
+          <input
+            data-dismiss="modal"
+            type="button"
+            value="Editar"
+            class="btn btn-info text-light"
+            (click)="update()">
+        </ng-template>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- End of Modal -->
+
+<div class="table-responsive">
+  <table class="table table-sm text-center">
+    <thead class="thead bg-primary text-white">
+    <tr>
+      <th scope="col">titulo</th>
+      <th scope="col">Año</th>
+      <th scope="col">Idioma</th>
+      <th scope="col">Artista</th>
+      <th scope="col">Genero</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let tema of temas">
+      <td>{{ tema.titulo }}</td>
+      <td>{{ tema.year }}</td>
+      <td>{{ tema.idioma_id }}</td>
+      <td>{{ tema.artista_id }}</td>
+      <td>{{ tema.genero_id }}</td>
+      <td>
+        <button type="button" class="btn btn-sm btn-info btn-icon-split mr-2 mb-1" data-toggle="modal" data-target="#modal" (click)="editForm(tema.id)">
+          <span class="icon text-white-50"><i class="far fa-edit"></i></span><span class="text">Edit</span>
+        </button>
+        <button type="button" class="btn btn-sm btn-danger btn-icon-split mb-1"(click)="delete(tema.id)">
+          <span class="icon text-white-50"><i class="far fa-trash-alt"></i></span><span class="text">Delete</span>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

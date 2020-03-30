@@ -1,0 +1,197 @@
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+  <!-- Sidebar -->
+  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <span class="sidebar-brand d-flex align-items-center justify-content-center">
+      <div class="sidebar-brand-icon">
+          <img src="https://image.flaticon.com/icons/png/512/106/106109.png" height="40" width="50">
+      </div>
+      <div class="sidebar-brand-text mx-3">EL sound's</div>
+    </span>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+      Interface
+    </div>
+
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+      <a class="nav-link " [routerLink]="['tables/nacionalidad']">
+        <i class="fas fa-globe"></i>
+        <span>Nacionalidad</span>
+      </a>
+    </li>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+      <a class="nav-link " [routerLink]="['tables/genero']">
+        <i class="fas fa-venus-mars"></i>
+        <span>Genero</span>
+      </a>
+    </li>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+      <a class="nav-link " [routerLink]="['tables/idioma']">
+        <i class="fas fa-language"></i>
+        <span>Idioma</span>
+      </a>
+    </li>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+      <a class="nav-link " [routerLink]="['tables/disquera']">
+        <i class="fas fa-compact-disc"></i>
+        <span>Disquera</span>
+      </a>
+    </li>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+      <a class="nav-link " [routerLink]="['tables/artista']">
+        <i class="fas fa-user"></i>
+        <span>Artista</span>
+      </a>
+    </li>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+      <a class="nav-link " [routerLink]="['tables/tema']">
+        <i class="fas fa-music"></i>
+        <span>Tema</span>
+      </a>
+    </li>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+      <a class="nav-link " [routerLink]="['tables/album']">
+        <i class="fas fa-compact-disc"></i>
+        <span>Album</span>
+      </a>
+    </li>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+      <a class="nav-link " [routerLink]="['tables/api']">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>API</span>
+      </a>
+    </li>
+
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+  </ul>
+  <!-- End of Sidebar -->
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+      <!-- Topbar -->
+      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+        <!-- Sidebar Toggle (Topbar) -->
+        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+          <i class="fa fa-bars"></i>
+        </button>
+
+        <!-- Topbar Navbar -->
+        <ul class="navbar-nav ml-auto">
+
+          <!-- Nav Item - User Information -->
+          <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div *ngIf="loggedIn">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user.name }}</span>
+                <img class="img-profile rounded-circle" src="{{ user.photoUrl }}">
+              </div>
+              <div *ngIf="auth0.userProfile$ | async as profile">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ profile.name }}</span>
+                <img class="img-profile rounded-circle" src="{{ profile.picture }}">
+              </div>
+              <div *ngIf="loggedLocal">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+                <img class="img-profile rounded-circle" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+              </div>
+            </a>
+
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+
+        </ul>
+
+      </nav>
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <router-outlet></router-outlet>
+
+      </div>
+      <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>Copyright &copy; Your Website 2020</span>
+        </div>
+      </div>
+    </footer>
+    <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        <a *ngIf="loggedIn" class="btn btn-primary text-white" (click)="signOut()" [routerLink]="['']" >Logout</a>
+        <a *ngIf="auth0.userProfile$ | async as profile" class="btn btn-primary text-white" (click)="auth0.logout()">Logout</a>
+        <a *ngIf="loggedLocal" class="btn btn-primary text-white" (click)="logOut()">Logout!</a>
+      </div>
+    </div>
+  </div>
