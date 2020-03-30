@@ -24,10 +24,10 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [AuthGuard],
+    canActivate: [Auth0Guard],
     // canActivate: [AuthGuard],
     // canActivate: [Auth0Guard],
-    canActivateChild: [AuthGuard],
+    canActivateChild: [Auth0Guard],
     // canActivateChild: [Auth0Guard],
     // canActivateChild: [AuthGuard],
 
